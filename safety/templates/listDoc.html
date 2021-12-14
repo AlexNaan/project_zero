@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% load tags %}
+
+{% block content %}
+<table class="bordered">
+    <thead>
+        <tr>
+            <th>№</th>
+            <th>Дата</th>
+            <th>Организация</th>
+            <th>Обучение</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for doc in jsonResponse %}
+        <tr>
+            <td> {{forloop.counter}} </td>
+            <td>{{ doc.Number }}</td>
+            <td>{{ doc.Date }}</td>
+            <td>{{ doc.Organization }}</td>                        
+            <td>{{ doc.safety }}</td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,86 @@
+
+::-moz-selection {
+	background-color: black;
+	color: white;
+}
+
+/*Контент*/
+.main {
+	padding: 10px;
+}
+
+.main img {
+	margin-right: 15px;
+	border: 10px solid #e2e2e2;
+}
+
+.error{
+	margin:10px 0;
+	border-bottom:2px solid red;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+/* ФОРМА */
+
+form{
+	display: flex;
+	flex-direction:column;
+}
+
+input {
+	margin:10px 0;
+	padding:10px;
+	border:unset;
+	border-bottom:2px solid #a4a0a0;
+	outline:none;
+	
+}
+
+select{
+	margin:10px 0;
+	padding:10px;
+	border:unset;
+	border-bottom:2px solid #a4a0a0;
+	outline:none;
+	
+}
+.PageEmployees{
+	display:flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	
+}
+.PageEmployeesItem{
+	padding: 10px;
+	margin: 1px;
+	border: 1px solid #d5d5d5;
+}
+.PageEmployeesItem:hover{
+	background-color: #d5d5d5;
+}
+.left_slider{
+	position: absolute;
+	width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 35px solid #000000a1;
+	top:40%;
+	left: 10px;
+}
+.left_slider:hover, .right_slider:hover{
+	cursor: pointer;
+}
+
+.right_slider{
+	position: absolute;
+	width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 35px solid #000000a1;
+	top:40%;
+	left: calc(100% - 60px);
+}

@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% load tags %}
+
+{% block content %}
+
+<table class="bordered">
+    <thead>
+        <tr>
+            <th>№</th>
+            <th>Табельный номер</th>
+            <th>ФИО</th>
+            <th>Должность</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for mainStaff in jsonResponse %}
+        {% for Staff, arrayEmployee in mainStaff.items %}
+
+        <tr>
+            <td colspan='4'>
+                <h3>
+                    <a href='/safety/{{ idOrganization }}/{% returnHref Staff %}'>{% returnTitle Staff %} </a>
+                    <h3>
+            </td>
+        </tr>
+
+
+        {% for employee in arrayEmployee %}
+        <tr>
+            <td> {{forloop.counter}} </td>
+            <td>{{ employee.PersonnelNumber }}</td>
+            <td><a href='{{ employee.EmployeeCod }}'>{{ employee.Employee }}</td>
+            <td>{{ employee.Position }}</td>
+        </tr>
+        {% endfor %}
+
+        {% endfor %}
+
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

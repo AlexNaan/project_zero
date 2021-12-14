@@ -1,0 +1,99 @@
+{% extends "header.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-1">
+            Номер<input type="text" readonly class="form-control"  placeholder="{{ jsonResponse.Номер }}">
+        </div>
+        <div class="col-xs-12 col-sm-1 col-md-4 col-lg-1">
+            Дата<input type="text" readonly class="form-control"  placeholder="{{ jsonResponse.Дата }}">
+        </div>
+
+        <div class="col-xs-12 col-sm-2 col-md-4 col-lg-2">
+            Объекты строительства <input type="text" readonly class="form-control" placeholder="{{ jsonResponse.ОбъектСтроительства }}">
+        </div>
+
+        <div class="col-xs-12 col-sm-2 col-md-4 col-lg-1">
+            Подразделение <input type="text" readonly class="form-control" placeholder="{{ jsonResponse.Подразделение }}">
+        </div>
+
+        <div class="col-xs-12 col-sm-2 col-md-4 col-lg-1">
+            Номер договора <input type="text" readonly class="form-control"  placeholder="{{ jsonResponse.НомерДоговора }}">
+        </div>
+
+        <div class="col-xs-12 col-sm-2 col-md-4 col-lg-1">
+            Дата договора <input type="text" readonly class="form-control"  placeholder="{{ jsonResponse.ДатаДоговора }}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-2 col-md-4 col-lg-1">
+            Поставщик <input type="text" readonly class="form-control"  placeholder="{{ jsonResponse.Поставщик }}">
+        </div>
+
+        <div class="col-xs-12 col-sm-2 col-md-4 col-lg-2">
+            Условия поставки <input type="text" readonly class="form-control"  placeholder="{{ jsonResponse.УсловияПоставки }}">
+        </div>
+
+        <div class="col-xs-12 col-sm-2 col-md-4 col-lg-2">
+            Статус оплаты <input type="text" readonly class="form-control"  placeholder="{{ jsonResponse.СтатусОплаты }}">
+        </div>
+
+        <div class="col-xs-12 col-sm-2 col-md-4 col-lg-2">
+            Ответственный <input type="text" readonly class="form-control"  placeholder="{{ jsonResponse.Ответственный }}">
+        </div>
+    </div>
+</div>
+
+
+<br>
+<div calsss="table-responsive">
+    <table class="table table-bordered table-inverse table-hover table-condensed table-responsive">
+        <thead>
+            <tr calss="active">
+                <th>№</th>
+                <th>Наименование ТМЦ</th>
+                <th>Характеристика</th>
+                <th>Ед. изм.</th>
+                <th>Примечание</th>
+                <th>Шифр работ</th>
+                <th>Количество</th>
+                <th>Цена</th>
+                <th>Сумма</th>
+                <th>Срок поставки</th>
+                <th>Заявитель</th>
+                <th>Проект</th>
+                <th>Заявка сводная</th>
+                <th>Разделительная ведомость</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elmass in jsonResponse.МассивСтрок %}
+            <tr>
+                <td>{{ elmass.НомерСтроки }}</td>
+                <td>{{ elmass.НаименованиеТМЦ }}</td>
+                <td>{{ elmass.Характеристика }}</td>
+                <td>{{ elmass.ЕдиницаИзмерения }}</td>
+                <td>{{ elmass.Примечание }}</td>
+                <td>{{ elmass.ШифрРабот }}</td>
+                <td>{{ elmass.Количество }}</td>
+                <td>{{ elmass.Цена }}</td>
+                <td>{{ elmass.Сумма }}</td>
+                <td>{{ elmass.СрокПоставки }}</td>
+                <td>{{ elmass.Заявитель }}</td>
+                <td>{{ elmass.Проект }}</td>
+                <td>{{ elmass.ЗаявкаСводная }}</td>
+                <td>{{ elmass.РазделительнаяВедомость }}</td>
+            </tr>
+            {%endfor%}
+            <tbody>
+            </table>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+{% endblock content %}

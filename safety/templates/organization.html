@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+
+{% block content %}
+<table class="bordered">
+    <thead>
+        <tr>
+            <th>Организация</th>
+            <th>ИНН</th>
+            <th>КПП</th>
+            <th>Сотрудники</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for element0 in jsonResponse %}
+        <tr>
+            <td><a href='{{ element0.Code }}'>
+                    {{ element0.Name }}
+                </a></td>
+            <td>
+                {{ element0.INN }}
+            </td>
+            <td>
+                {{ element0.KPP }}
+            </td>
+            <td>
+                {{ element0.Sum }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,364 @@
+/*ТЕГИ*/
+body{
+    background: #e7e7e7 url("../images/bg.jpg") repeat
+ }
+
+a {
+	color: #0075d0;
+	/*text-decoration: underline;*/
+}
+
+p {
+	margin-bottom: 8px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: #838383;
+	line-height: normal;
+}
+
+h1 {
+	font-size: 30px;
+}
+
+h1:first-letter,
+h2:first-letter {
+	color: black;
+}
+
+h2 {
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+h3 {
+	font-size: 16px;
+}
+
+h1+p,h2+p,h3+p {
+	margin-top: 5px;
+}
+
+a img {
+	border: none;
+	outline: none;
+}
+
+ul,ol,dl {
+	margin: 0 0 0 30px;
+}
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin-left: 15px;
+}
+
+input,button {
+	display: inline-block;
+}
+
+blockquote {
+	padding: 15px 0;
+	margin: -5px 0 8px 30px;
+	font-style: italic;
+	color: #8b8b8b;
+	font-size: 18px;
+}
+
+blockquote:before {
+	content: "— ";
+}
+
+input:focus,select:focus {
+	outline: none;
+	/*border: 1px solid black;*/
+	box-shadow: none;
+}
+
+input:-moz-placeholder {
+  color: #c0c0c0;
+}
+
+input::-webkit-input-placeholder {
+  color: #c0c0c0;
+}
+/* Таблица */
+
+table.bordered {
+	margin: 8px 0;
+	padding: 0;
+	border-collapse: collapse;
+	border: 1px solid #d5d5d5;
+	width: 100%;
+}
+
+table.bordered th, table.bordered td {
+	border: 1px solid #d5d5d5;
+	padding: 5px;
+	vertical-align: top;
+}
+
+table.bordered th {
+	background-color: #efefef;
+	text-align: left;
+	font-weight: bold;
+}
+
+table.bordered tbody tr:hover {
+	background-color: #f2f2f2;
+}
+
+ .header_image{
+	position: relative;
+	display:flex;
+    height: 250px;
+    background-color: rgb(139, 136, 136);
+
+ }
+ .slider_image{
+	flex:1;
+	background-color: blue;
+	cursor: pointer;
+	transition: all 500ms ease-in-out
+ }
+ 
+ .image_back_1{
+	border: 2px solid #B1B1AC; 
+	border-radius: 6px;
+	background: url('../images/1.jpg');
+ }
+ .image_back_2{
+	border: 2px solid #B1B1AC; 
+	border-radius: 6px;
+	background: url('../images/2.jpg');
+}
+.image_back_3{
+	border: 2px solid #B1B1AC; 
+	border-radius: 6px;
+	background: url('../images/3.jpg');
+}
+
+.im_active{
+	flex:10;
+}
+
+ header{
+     background: black;
+ }
+ 
+ .headerImage{
+     display: block;
+     margin: 0 auto;
+     width:100%;
+ }
+ 
+ .container{
+     max-width:980px;
+     /*border:1px solid red;*/
+     margin: 0 auto;
+     background: white;
+ }
+  
+ ul{
+     font-size: 0px;
+ }
+ 
+ li{
+     font-size: 16px;
+ }
+ li a{
+     color:white
+ }
+ 
+ 
+ /*MENU*/
+ .top_menu{
+     display:flex;
+     margin:0 ;
+     padding:0;
+     flex-wrap: wrap;
+ }
+ 
+ .top_menu__item{
+     background: black;
+     font-family: 'Ubuntu', sans-serif;
+     display: inline-flex;
+     position: relative;
+ }
+
+
+ .top_menu__item a{
+     padding: 10px 10px;
+ }
+ 
+ .black_fon{
+     background: black;
+ }
+ 
+ .top_menu__item a:hover{
+     background-color: #5d5a5a;
+ }
+ 
+ /*SUBMENU*/
+ .submenu{
+     position: absolute;
+     display: none;
+     background: black;
+     top: 100%;
+     left: 0;
+     min-width: 250px;
+     margin:0;
+ }
+ 
+ .subtop_menu__item{
+     padding:10px 0;
+  
+ }
+ 
+ .top_menu__item:hover .submenu{
+     display: block;
+ }
+ 
+ /*КНОПКА ВЫХОД*/
+ .top_menu__item:last-child{
+     margin-left: auto;
+ }
+ 
+ .subtop_menu__item:hover{
+     background-color: #5d5a5a;
+ }
+ 
+ 
+/* КНОПКИ */
+.actionUser, .actionRole{
+	padding: 4px;
+	border: none;
+	border-radius: 4px;
+	/*background: rgba(141, 133, 133, 0.274);*/
+	background: #aeabab;
+}
+.actionUser:hover, .actionRole:hover{
+	
+	background: rgba(141, 133, 133, 0.466);
+}
+.button-close{
+	border: none;
+	padding: 5px;
+	border-radius: 2px;
+	background: rgba(141, 133, 133, 0.274)
+}
+
+.button-close:hover{
+	background: rgba(141, 133, 133, 0.466);
+}
+ 
+
+
+/*
+Информация о сотруднике
+*/
+.employee-info{
+	display:flex;
+	flex-direction:row;
+	background: #fff;;
+	
+}
+.employee-image{
+	
+	margin:20px;
+}
+.employee-data{
+	margin:20px;
+	width:100%
+}
+
+/*.employee-size{
+	width: 250px;
+	height: 250px;
+}
+*/
+
+/*POPUP*/
+
+.popup_create_user{
+	position:absolute;
+	left:0;
+	top:0;
+	margin: 0 auto;
+	background-color: rgba(46, 45, 45, 0.76);
+	width: 100%;
+	height: 100%;
+}
+
+.popup_change_user{
+	position:absolute;
+	left:0;
+	top:0;
+	margin: 0 auto;
+	background-color: rgba(46, 45, 45, 0.76);
+	width: 100%;
+	height: 100%;
+}
+
+.popup_create_role{
+	position:absolute;
+	left:0;
+	top:0;
+	margin: 0 auto;
+	background-color: rgba(46, 45, 45, 0.76);
+	width: 100%;
+	height: 100%;
+}
+.popup-visible-none{
+	visibility: hidden;
+}
+
+.popup-content{
+	
+	width:800px;
+	margin: 0 auto;
+	background-color: rgb(255, 255, 255);
+	padding:30px;
+	margin-top: 50px;
+	/*transition-delay: 0.2s*/
+	
+}
+
+.styleButtom{
+	padding:5px;
+}
+
+
+/*
+
+ИСПРАВИТЬ!!!
+
+*/
+
+.searchEmployee{
+	position:relative;
+}
+.selectRow{
+	border:2px solid black;
+}
+.listSearch{
+	border-radius: 10px;
+	position:absolute;
+	background:#d6d4d4;
+	padding-right:15px;
+
+	
+}
+.searchNone{
+	display:none;
+}
+.listSearch ul li a{
+	color: black;
+}
+
+.listSearch ul li a::before{
+	content: "\2714";
+}

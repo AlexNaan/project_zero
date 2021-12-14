@@ -1,0 +1,71 @@
+{% extends "header.html" %}
+
+{% block content %}
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label" for="inputP1">Номер</label>
+        <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Номер }}">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="inputP1">Дата</label>
+        <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Дата }}">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="inputP1">Объекты cтроительства</label>
+        <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.ОбъектыСтроительства }}">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="inputP1">Подразделение</label>
+        <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Подразделение }}">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="inputP1">Ответственный</label>
+        <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Ответственный }}">
+    </div>
+</form>
+
+
+<div calsss="table-responsive">
+    <table id="table_page" class="table table-bordered table-inverse table-hover table-condensed table-responsive">
+        <thead>
+            <tr calss="active">
+                <th>№</th>
+                <th>Наименование ТМЦ</th>
+                <th>Характеристика</th>
+                <th>Ед. изм.</th>
+                <th>Примечание</th>
+                <th>Место поставки</th>
+                <th>Шифр работ</th>
+                <th>Количество</th>
+                <th id="colum_price_{{jsonResponse.hiden}}">Цена</th>
+                <th id="colum_sum_{{jsonResponse.hiden}}">Сумма</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elmass in jsonResponse.МассивСтрок %}
+            <tr>
+                <td>{{ elmass.НомерСтроки }}</td>
+                <td>{{ elmass.НаименованиеТМЦ }}</td>
+                <td>{{ elmass.Характеристика }}</td>
+                <td>{{ elmass.ЕдиницаИзмерения }}</td>
+                <td>{{ elmass.Примечание }}</td>
+                <td>{{ elmass.МестоПоставки }}</td>
+                <td>{{ elmass.ШифрРабот }}</td>
+                <td>{{ elmass.Количество }}</td>
+                <td id="colum_price_{{jsonResponse.hiden}}">{{ elmass.Цена }}</td>
+                <td id="colum_sum_{{jsonResponse.hiden}}">{{ elmass.Сумма }}</td>
+            </tr>
+            {%endfor%}
+            <tbody>
+            </table>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        {% endblock content %}

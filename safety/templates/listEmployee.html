@@ -1,0 +1,70 @@
+{% extends "main.html" %}
+{% load tags %}
+
+{% block content %}
+<div>
+{% for dataPage in jsonResponse.DataPage %}
+    <a href="/safety/employees/{{ dataPage.Letter }}/"> {{ dataPage.Letter }} <sub style="font-size: 12px;">({{ dataPage.SumEmployee }})</sub> </a>
+{% endfor %}
+</div>
+
+<label> Поиск сотрудника: <input id="searchEmployee" type="text" autofocus></label>
+<div class="listSearch searchNone">
+	<ul style="color:black;">
+	
+	</ul>
+</div>
+
+<div class="PageEmployees">
+    {% for Page in jsonResponse.DataPage %}
+        {% if Page.Letter == Symbol  %}
+            
+            {% for index in Page.SumPage|genCollection %}
+                <div class="PageEmployeesItem">
+                    <a href="/safety/employees/{{ Page.Letter }}/{{forloop.counter}}/">{{forloop.counter}}</a>
+                </div> 
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>
+
+<table class="bordered">
+    <thead>
+        <tr>
+            <th>№</th>
+            <th>Сотрудник</th>
+            <th>Табельный номер</th>
+            <th>Организация</th>
+            <th>Подразделение</th>
+            <th>Должность</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for employee in jsonResponse.DataEmployee %}
+        <tr id="{{employee.Code}}">
+            <td>{{ employee.index }}</td>
+           
+            <td> <a data-id-data="{{employee.Code}}" href="/safety/{{employee.OrganizationCode}}/{{employee.SubunitCode}}/{{employee.Code}}/">{{ employee.Employee }}</a></td>
+            <td>{{ employee.PersonnelNumber }}</td>
+            <td>{{ employee.Organization }}</td>
+            <td>{{ employee.Subunit }}</td>
+            <td>{{ employee.Position }}</td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+<div class="PageEmployees">
+    {% for Page in jsonResponse.DataPage %}
+    {% if Page.Letter == Symbol  %}
+        
+        {% for index in Page.SumPage|genCollection %}
+            <div class="PageEmployeesItem">
+                <a href="/safety/employees/{{ Page.Letter }}/{{forloop.counter}}/">{{forloop.counter}}</a>
+            </div> 
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+</div>
+{% endblock content %}

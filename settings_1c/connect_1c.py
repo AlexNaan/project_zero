@@ -1,0 +1,5 @@
+PROTO  = ''
+IP = ''
+URL =''
+USER_1C = ''
+PASSWORD_1C = ''

@@ -1,0 +1,132 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Номер</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Номер }}">
+        </div>
+ 
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Дата</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Дата }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Проект</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Проект }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Объекты cтроительства</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.ОбъектыСтроительства }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Подразделение</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Подразделение }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Номер договора</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.НомерДоговора }}">
+        </div>
+ 
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Дата договора</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.ДатаДоговора }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Место поставки</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.МестоПоставки }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Поставщик</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Поставщик }}">
+        </div>
+    </form>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Условия поставки</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.УсловияПоставки }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Заявитель</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Заявитель }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Ответственный</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Ответственный }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Контрагент</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Контрагент }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">Договор</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.Договор }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="inputP1">ИнженерОС</label>
+            <input type="text" readonly class="form-control" id="inputP1" placeholder="{{ jsonResponse.ИнженерОС }}">
+        </div>
+    </form>
+
+
+<div calsss="table-responsive">
+    <table class="table table-bordered table-inverse table-hover table-condensed table-responsive">
+        <thead>
+            <tr calss="active">
+                <th>№</th>
+                <th>Наименование ТМЦ</th>
+                <th>Характеристика</th>
+                <th>Ед. изм.</th>
+                <th>Примечание</th>
+                <th>Шифр работ</th>
+                <th>Количество</th>
+                <th>Цена</th>
+                <th>Сумма</th>
+                <th>Дата поставки на объект</th>
+                <th>Срок поставки</th>
+                <th>Статус доставки</th>
+                <th>Кол-во от поставщика</th>
+                <th>Возврат поставщику</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elmass in jsonResponse.МассивСтрок %}
+            <tr>
+                <td>{{ elmass.НомерСтроки }}</td>
+                <td>{{ elmass.НаименованиеТМЦ }}</td>
+                <td>{{ elmass.Характеристика }}</td>
+                <td>{{ elmass.ЕдиницаИзмерения }}</td>
+                <td>{{ elmass.Примечание }}</td>
+                <td>{{ elmass.ШифрРабот }}</td>
+                <td>{{ elmass.Количество }}</td>
+                <td>{{ elmass.Цена }}</td>
+                <td>{{ elmass.Сумма }}</td>
+                <td>{{ elmass.ДатаПоставкиНаОбъект }}</td>
+                <td>{{ elmass.СрокПоставки }}</td>
+                <td>{{ elmass.СтатусДоставки }}</td>
+                <td>{{ elmass.КоличествоОтПоставщика }}</td>
+                <td>{{ elmass.ВозвратПоставщику }}</td>
+            </tr>
+            {%endfor%}
+            <tbody>
+            </table>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+{{ forloop.counter }}
+
+<div id="accordion">
+    {% for element0 in jsonResponse %}
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne{{forloop.counter}}" aria-expanded="true" aria-controls="collapseOne">
+                    {{element0.Проект}}
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne{{forloop.counter}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <dev calsss="table-responsive[-sm|-md|-lg|-xl]">
+                    <table class="table table-bordered table-inverse table-hover table-condensed table-sm table-responsive">
+
+                        <thead class="thead-dark">
+                            <tr calss="active">
+                                <th>Тип</th>
+                                <th>Дата</th>
+                                <th>Номер</th>
+                                <th>Подразделение</th>
+                                <th>Объекты cтроительства</th>
+                            </tr>
+                        </thead>
+
+                        {% for element1 in element0.ДокументыПоПроекту %}
+                        <tbody>
+                            <tr>
+                                <td>{{element1.Тип}}</td>
+                                <td>{{element1.Дата}}</td>
+                                <td>{{element1.Номер}}</td>
+                                <td>{{element1.Подразделение}}</td>
+                                <td>{{element1.ОбъектыСтроительства}}</td>
+                            </tr>
+                        </tbody>
+                        {%endfor%}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+{% endblock content %}

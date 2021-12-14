@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>{{ title }} </title>
+	<link rel="icon" href="{% static "ico/favicon.ico" %}" type="image/x-icon">
+	<link rel="stylesheet" href="{% static "css/reset_safety.css" %}">
+	<link rel="stylesheet" href="{% static "css/base-safety.css" %}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static "css/style_safety.css" %}">
+
+</head>
+
+<body>
+	<header>
+		<div class="container">
+			<div class="header_image"> 
+				<div class="slider_image image_back_1 im_active"></div>
+				<div class="slider_image image_back_2"></div>
+				<div class="slider_image image_back_3"></div>
+				<div class="left_slider"></div>
+				<div class="right_slider"></div>
+			</div>
+	</header>
+
+	<div class="container">
+		{% include 'nav/nav.html' %}
+		<div class="container">
+			
+			<div class="main">
+				{% block content%}{% endblock content %}
+			</div>
+		</div>
+
+		<!--Подвал-->
+
+	</div>
+	
+	<script src="{% static "js/header.js" %} "></script>
+	
+	{% if async_load_file %}
+		<script src="{% static "js/async_load_file.js" %} "></script>
+	{% endif %}
+	
+	{% if search_employee %}
+		<script src="{% static "js/search_employee.js" %} "></script>
+	{% endif %}
+	
+</body>
+
+</html>

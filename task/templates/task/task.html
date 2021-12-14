@@ -1,0 +1,44 @@
+{% extends "header.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block content %}
+
+
+{% if empty_task %}
+<div class="container">
+<div class="mb-3 mt-5">
+    <div class="mb-3">
+        <h2 class="text-red text-center">Задач нет</h2>
+    </div>
+</div>
+</div>
+{% else %}
+<div class="container">
+    <div class="row">
+        {% for element in jsonResponse %}
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4"> <!--размер для всех устройств -->
+            <div class="card bg-muted">
+                <div class="card-body">
+                    <h4 class="card-title {{ element.ЦветЗадачи }}">{{ element.Задача|truncatechars:20 }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Номер задачи: {{ element.НомерЗадачи }} </h6>
+		    <h6 class="card-subtitle mb-2 text-muted">Номер документа: {{ element.НомерДокумента }} </h6>
+                    <p class="card-text">Автор: {{ element.Автор }} </p>
+                    <p class="card-text">Срок исполнения: {{ element.СрокИсполнения }} </p>
+                    <a href=/task/info_task/{{ element.НомерЗадачи }}/{{ element.ДатаЗадачи }} class="card-link">Подробно</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+{% endblock content %}

@@ -1,0 +1,176 @@
+{% extends "header.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="" class="hrefHistory" type="submit">Итория</a>
+
+            <div class="popUpHistory popup_hidden" id="history">
+                <div style="margin: 2px">
+
+                <div class=flexContainer>
+                <h4 class="mb-3 mt-5"> История согласования </h4>
+                    <a href="" class="closeHistory"></a>
+                </div>
+                {% for element in jsonResponse %}
+                    {% for history in element.МассивИсторий %}
+                    <p> <strong>Задача № {{ forloop.counter }}</strong> </p>
+                    <label>Исполнитель: </label> 
+                    <input type="text" class="form-control" value="{{ history.Исполнитель }}" readonly> </label> 
+                    
+                    <div style="margin:10px 0">
+                        <label>Даты начало: </label> 
+                        <input type="text" class="datepicker" value="{{ history.Начало }} " readonly>
+                        <label>Даты окончания: </label> 
+                        <input type="text" class="datepicker" value="{{ history.Окончание }} " readonly>
+                    </div>
+                    <label>Комментарий: </label> 
+                    <textarea class="form-control" readonly style="min-height: 75px;">{{ history.Комментарий }}</textarea>
+        
+                    <hr class="mb-4">
+        
+                    {%endfor%}
+                {%endfor%}
+            </div>
+            </div>
+            <form action="/task/info_task/{{number}}/{{str_data}}/execute" class="edit-form needs-validation" method="post">
+                {% csrf_token %}
+                {% for element in jsonResponse %}
+
+                <h4 class="mb-3 mt-5">{{ element.Задача }}</h4>
+
+                <div class="mb-3">
+                    <label for="project">Проект</label>
+                    <input type="text" class="form-control" id="project" name="project" value="{{ element.Проект }}"
+                        disabled>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="author">Автор</label>
+                    <input type="text" class="form-control" id="author" name="author" value="{{ element.Автор }}"
+                        disabled>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="performer">Исполнитель</label>
+                    <input type="text" class="form-control" id="performer" name="performer"
+                        value="{{ element.Исполнитель }}" readonly>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="document">Документ</label>
+                    <input type="text" class="form-control" id="document" name="document"
+                        value="{{ element.ВидДокумента }} № {{ element.ДокументНомер }} от {{ element.ДокументДата}}"
+                        readonly>
+
+                    <a
+                        href="/doc/docinfo/{{ element.ДокументНомер }}/{{ element.ДокументДата }}/{{element.ТипДокумента}}">Подробно</a>
+                    <div class="invalid-feedback"></div>
+                </div>
+
+
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input id="agreed-yes" name="agreed" type="radio" class="custom-control-input" value="yes"
+                            {{FL_dostupnost}} {{ fl_sog }}>
+                        <label class="custom-control-label" for="agreed-yes">Согласовано</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="agreed-no" name="agreed" type="radio" class="custom-control-input" value="no" {{
+                            FL_dostupnost }} {{fl_not_sog}}>
+                        <label class="custom-control-label" for="agreed-no">Не согласовано</label>
+                    </div>
+                </div>
+                <div class="mb-3 ">
+                    <label for="comment">Комментарий</label>
+                    <textarea id="comment" name="comment" class="form-control"
+                        style="min-height: 150px;">{{element.Комментарий}}</textarea>
+                    <div class="invalid-feedback">Напишите комментарий</div>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary" type="submit" {{FL_dostupnost}}>Согласовать</button>
+                <div class="mb-5"></div>
+
+                {%endfor%}
+            </form>
+        </div>
+        
+    </div>
+    
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+<script>
+    $(function () {
+        var $formEdit = $('.edit-form');
+        var $comment = $formEdit.find('[name="comment"]');
+        var $agreedElems = $formEdit.find('[name="agreed"]');
+
+        function clearErrors() {
+            $formEdit.find('input, textarea').removeClass('is-invalid');
+        }
+
+        function noErrors() {
+            return $formEdit.find('.is-invalid').length === 0;
+        }
+
+        $formEdit.on('submit', function (event) {
+            clearErrors()
+
+            var commentVal = $comment.val();
+            var agreedVal = $formEdit.find('[name="agreed"]:checked').val();
+
+            if (agreedVal === undefined) {
+                $agreedElems.addClass('is-invalid');
+            } else if (agreedVal === 'no') {
+                if (!commentVal) {
+                    $comment.addClass('is-invalid');
+                }
+            }
+
+            if (!noErrors()) {
+                event.preventDefault();
+            }
+        });
+    });
+
+    let hrefHistory = document.querySelector(".hrefHistory")
+    if (hrefHistory != null) {
+        hrefHistory.addEventListener('click', cliclOnHistory)
+        hrefHistory.style.setProperty('display', 'block');
+        
+    }
+
+    let closeHistory = document.querySelector(".closeHistory")
+    if (closeHistory != null) {
+        closeHistory.addEventListener('click', cliclOffHistory)
+    }
+
+    function cliclOnHistory(e){
+        e.preventDefault();
+
+        let popUp = document.querySelector(".popUpHistory")
+        popUp.classList.toggle('popup_hidden')
+    }
+
+    function cliclOffHistory(e){
+        e.preventDefault();
+        let popUp = document.querySelector(".popUpHistory")
+        popUp.classList.add('popup_hidden')
+}
+
+</script>
+{% endblock content %}
